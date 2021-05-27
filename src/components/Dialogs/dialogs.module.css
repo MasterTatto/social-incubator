@@ -1,0 +1,43 @@
+.dialogs_item {
+	/* display: grid;
+	grid-template-columns: 2fr 10fr; */
+	display: flex;
+}
+.dialogs_items {
+	padding: 10px;
+	border-right: 1px solid #000;
+}
+.dialog {
+	font-size: 20px;
+	padding: 10px;
+}
+
+.messages {
+	padding: 10px;
+	padding-left: 30px;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+.active {
+	color: aqua;
+	border-bottom: 2px solid aqua;
+}
+.area {
+	border: none;
+	outline: none;
+}
+.btn {
+	text-align: center;
+	border: none;
+	padding: 0 13px;
+	cursor: pointer;
+}
+.send {
+	display: flex;
+	padding: 10px;
+	max-width: 320px;
+	justify-content: flex-end;
+}
