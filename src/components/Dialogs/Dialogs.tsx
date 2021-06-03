@@ -6,7 +6,7 @@ import Message from './Message/Message';
 //
 type messagesTypeProps = {
 	state: messagespagesType;
-	addMessages: (mes: string) => void;
+	dispatch: (mes: any) => void;
 };
 //
 const Dialogs = (props: messagesTypeProps) => {
@@ -18,7 +18,7 @@ const Dialogs = (props: messagesTypeProps) => {
 	let messagesElements = props.state.messages.map((mes) => {
 		return <Message message={mes.message} />;
 	});
-	
+
 	//
 	const [value, setValue] = useState('');
 	const noSpace = value.trim();
@@ -26,7 +26,7 @@ const Dialogs = (props: messagesTypeProps) => {
 		setValue(e.currentTarget.value);
 	const onKeyPressValue = (e: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === 'Enter' && noSpace) {
-			props.addMessages(noSpace);
+			props.dispatch({ type: 'ADD-MESSAGES', mes: value });
 			setValue('');
 		}
 	};
@@ -46,7 +46,7 @@ const Dialogs = (props: messagesTypeProps) => {
 				></textarea>
 				<button
 					onClick={() => {
-						props.addMessages(value);
+						props.dispatch({ type: 'ADD-MESSAGES', mes: value });
 						setValue('');
 					}}
 					className={d.btn}

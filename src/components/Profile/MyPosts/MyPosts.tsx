@@ -19,7 +19,7 @@ const MyPosts = (props: indexTypeProps) => {
 	//
 	const onKeyPressInput = (e: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === 'Enter' && outSpace) {
-			props.addPost(outSpace);
+			props.dispatch({ type: 'ADD-POST', postMessage: outSpace });
 			setValue('');
 		}
 	};
@@ -41,7 +41,7 @@ const MyPosts = (props: indexTypeProps) => {
 				<button
 					onClick={() => {
 						if (outSpace) {
-							props.addPost(outSpace);
+							props.dispatch({ type: 'ADD-POST', postMessage: outSpace });
 							setValue('');
 						}
 					}}

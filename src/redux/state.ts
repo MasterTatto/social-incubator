@@ -4,9 +4,10 @@ export type StoreType = {
 	_state: stateType;
 	getState: () => void;
 	_callSubscriber: (state: stateType) => void;
-	addPost: (postMessage: string) => void;
-	addMessages: (mes: string) => void;
+	_addPost: (postMessage: string) => void;
+	_addMessages: (mes: string) => void;
 	subscribe: (observer: (state: stateType) => void) => void;
+	dispatch: (action: any) => void;
 };
 
 let store: StoreType = {
@@ -37,23 +38,40 @@ let store: StoreType = {
 			],
 		},
 	},
+	//
+	subscribe(observer: (state: stateType) => void) {
+		this._callSubscriber = observer;
+		this._callSubscriber(this._state);
+	},
+	//
+	_callSubscriber(state: stateType) {},
+	//
 	getState() {
 		return this._state;
 	},
-	_callSubscriber(state: stateType) {},
-	addPost(postMessage: string) {
-		let newPost = { id: v1(), message:postMessage, likeCount: ' like 0' };
+	//
+	_addPost(postMessage: string) {
+		let newPost = { id: v1(), message: postMessage, likeCount: ' like 0' };
 		this._state.profilePage.posts.unshift(newPost);
 		this._callSubscriber(this._state);
 	},
-	addMessages(mes: string) {
+	//
+	_addMessages(mes: string) {
 		let newMessage = { id: v1(), message: mes };
 		this._state.messagesPage.messages.push(newMessage);
 		this._callSubscriber(this._state);
 	},
-	subscribe(observer: (state: stateType) => void) {
-		this._callSubscriber = observer;
-		this._callSubscriber(this._state);
+	dispatch(action: any) {
+		if (action.type === 'ADD-POST') {
+			this._addPost(action.postMessage);
+			// let newPost = { id: v1(), message: postMessage, likeCount: ' like 0' };
+			// this._state.profilePage.posts.unshift(newPost);
+			// this._callSubscriber(this._state);
+		} else if (action.type === 'ADD-MESSAGES') {
+			let newMessage = { id: v1(), message: action.mes };
+			this._state.messagesPage.messages.push(newMessage);
+			this._callSubscriber(this._state);
+		}
 	},
 };
 //

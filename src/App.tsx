@@ -13,8 +13,9 @@ import { stateType } from './redux/state';
 //
 export type indexTypeProps = {
 	appState: stateType;
-	addPost: (s: string) => void;
-	addMessages: (mes: string) => void;
+	// addPost: (s: string) => void;
+	// addMessages: (mes: string) => void;
+	dispatch: (d: any) => void;
 };
 //
 const App = (props: indexTypeProps) => {
@@ -29,7 +30,8 @@ const App = (props: indexTypeProps) => {
 						return (
 							<Dialogs
 								state={props.appState.messagesPage}
-								addMessages={props.addMessages}
+								// addMessages={props.addMessages}
+								dispatch={props.dispatch}
 								// messages={props.appState.messagesPage.messages}
 								// dialogs={props.appState.messagesPage.dialogs}
 							/>
@@ -42,7 +44,8 @@ const App = (props: indexTypeProps) => {
 						return (
 							<Profile
 								profilePage={props.appState.profilePage}
-								addPost={props.addPost}
+								// addPost={props.addPost}
+								dispatch={props.dispatch}
 							/>
 						);
 					}}

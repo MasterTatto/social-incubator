@@ -14,8 +14,9 @@ function rerenderEntireTree(state: stateType) {
 			<BrowserRouter>
 				<App
 					appState={state}
-					addPost={store.addPost.bind(store)}
-					addMessages={store.addMessages.bind(store)}
+					dispatch={store.dispatch.bind(store)}
+					// addPost={store.addPost.bind(store)}
+					// addMessages={store.addMessages.bind(store)}
 				/>
 			</BrowserRouter>
 		</React.StrictMode>,
@@ -26,7 +27,7 @@ function rerenderEntireTree(state: stateType) {
 //
 store.subscribe(rerenderEntireTree);
 //
-rerenderEntireTree(store._state);
+//rerenderEntireTree(store._state);
 
 //posts={state.posts} messages={state.messages} dialogs={state.dialogs}
 // If you want to start measuring performance in your app, pass a function

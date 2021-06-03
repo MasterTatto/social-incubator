@@ -5,7 +5,7 @@ import { profilePageType } from './../../redux/state';
 //
 export type indexTypeProps = {
 	profilePage: profilePageType;
-	addPost:(v:string) => void
+	dispatch:(v:any) => void
 	
 };
 //
@@ -16,7 +16,7 @@ const Profile = (props: indexTypeProps) => {
 	return (
 		<div>
 			<ProfileInfo />
-			<MyPosts profilePage={props.profilePage} addPost={props.addPost}/>
+			<MyPosts profilePage={props.profilePage} dispatch={props.dispatch}/>
 		</div>
 	);
 };
