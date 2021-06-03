@@ -43,7 +43,6 @@ const App = (props: indexTypeProps) => {
 							<Profile
 								profilePage={props.appState.profilePage}
 								addPost={props.addPost}
-								
 							/>
 						);
 					}}
