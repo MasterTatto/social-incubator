@@ -46,6 +46,7 @@ const Dialogs = (props: messagesTypeProps) => {
 					onChange={addMes}
 					className={d.area}
 					onKeyPress={onKeyPressValue}
+					placeholder={'Enter your message...'}
 				></textarea>
 				<button
 					onClick={() => {
