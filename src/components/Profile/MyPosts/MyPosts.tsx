@@ -1,8 +1,9 @@
 import React, { KeyboardEvent, useState } from 'react';
 import { indexTypeProps } from '../Profile';
-
+import {addPostActionCreater} from '../../../redux/state' 
 import ProfileStyle from './MyPosts.module.css';
 import Post from './Posts/Post';
+
 
 const MyPosts = (props: indexTypeProps) => {
 	//
@@ -19,11 +20,18 @@ const MyPosts = (props: indexTypeProps) => {
 	//
 	const onKeyPressInput = (e: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === 'Enter' && outSpace) {
-			props.dispatch({ type: 'ADD-POST', postMessage: outSpace });
+			props.dispatch(addPostActionCreater(outSpace));
 			setValue('');
 		}
 	};
-
+	const addPost = () => {
+		{
+			if (outSpace) {
+				props.dispatch(addPostActionCreater(outSpace));
+				setValue('');
+			}
+		}
+	};
 	return (
 		<div className={ProfileStyle.posts}>
 			<div className={ProfileStyle.nav_a}>
@@ -38,16 +46,7 @@ const MyPosts = (props: indexTypeProps) => {
 						onChange={(e) => setValue(e.currentTarget.value)}
 					></textarea>
 				</div>
-				<button
-					onClick={() => {
-						if (outSpace) {
-							props.dispatch({ type: 'ADD-POST', postMessage: outSpace });
-							setValue('');
-						}
-					}}
-				>
-					Add post
-				</button>
+				<button onClick={addPost}>Add post</button>
 			</div>
 			{postElements}
 		</div>

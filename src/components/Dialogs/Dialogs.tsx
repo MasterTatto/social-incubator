@@ -1,5 +1,8 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
-import { messagespagesType } from './../../redux/state';
+import {
+	addMessagesActionCreater,
+	messagespagesType,
+} from './../../redux/state';
 import d from './../Dialogs/dialogs.module.css';
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
@@ -26,7 +29,7 @@ const Dialogs = (props: messagesTypeProps) => {
 		setValue(e.currentTarget.value);
 	const onKeyPressValue = (e: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === 'Enter' && noSpace) {
-			props.dispatch({ type: 'ADD-MESSAGES', mes: value });
+			props.dispatch(addMessagesActionCreater(value));
 			setValue('');
 		}
 	};
@@ -46,7 +49,7 @@ const Dialogs = (props: messagesTypeProps) => {
 				></textarea>
 				<button
 					onClick={() => {
-						props.dispatch({ type: 'ADD-MESSAGES', mes: value });
+						props.dispatch(addMessagesActionCreater(value));
 						setValue('');
 					}}
 					className={d.btn}
