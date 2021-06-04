@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, useState } from 'react';
+import { addPostActionCreater } from '../../../redux/profile_reducer copy';
 import { indexTypeProps } from '../Profile';
-import {addPostActionCreater} from '../../../redux/state' 
 import ProfileStyle from './MyPosts.module.css';
 import Post from './Posts/Post';
 

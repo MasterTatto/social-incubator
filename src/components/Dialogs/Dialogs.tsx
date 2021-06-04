@@ -1,8 +1,6 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
-import {
-	addMessagesActionCreater,
-	messagespagesType,
-} from './../../redux/state';
+import { addMessagesActionCreater } from '../../redux/messages_reducer';
+import { messagespagesType } from './../../redux/state';
 import d from './../Dialogs/dialogs.module.css';
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';

@@ -1,4 +1,6 @@
 import { v1 } from 'uuid';
+import messagesReducer from './messages_reducer';
+import profileReducer from './profile_reducer copy';
 
 export type StoreType = {
 	_state: stateType;
@@ -9,9 +11,6 @@ export type StoreType = {
 	subscribe: (observer: (state: stateType) => void) => void;
 	dispatch: (action: any) => void;
 };
-//
-const ADD_POST = 'ADD-POST';
-const ADD_MESSAGES = 'ADD-MESSAGES';
 //
 let store: StoreType = {
 	_state: {
@@ -65,35 +64,12 @@ let store: StoreType = {
 		this._callSubscriber(this._state);
 	},
 	dispatch(action: any) {
-		if (action.type === ADD_POST) {
-			// this.addPost(action.postMessage);
-			let newPost = {
-				id: v1(),
-				message: action.postMessage,
-				likeCount: ' like 0',
-			};
-			this._state.profilePage.posts.unshift(newPost);
-			this._callSubscriber(this._state);
-		} else if (action.type === ADD_MESSAGES) {
-			let newMessage = { id: v1(), message: action.mes };
-			this._state.messagesPage.messages.push(newMessage);
-			this._callSubscriber(this._state);
-		}
+		//
+		messagesReducer(this._state, action);
+		//
+		profileReducer(this._state, action);
+		//
 	},
-};
-//
-export const addPostActionCreater = (outSpace: string) => {
-	return {
-		type: ADD_POST,
-		postMessage: outSpace,
-	};
-};
-//
-export const addMessagesActionCreater = (value: string) => {
-	return {
-		type: ADD_MESSAGES,
-		mes: value,
-	};
 };
 //
 export type PostsType = {
